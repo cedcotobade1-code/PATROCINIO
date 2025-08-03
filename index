@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="gl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía de Patrocinio - CED Cotobade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Application Structure Plan: A single-page, top-to-bottom narrative infographic. It starts with a strong hook (Hero), followed by key metrics presented as "Big Numbers" for immediate impact. It then flows into a visual breakdown of the club's community (Donut Chart) and structure (HTML/CSS Diagram). The value proposition is presented in digestible cards, leading to the sponsorship tiers and a final call to action. This linear flow guides the user through a compelling story, making the data easy to understand and visually engaging. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Key metrics (150+ players, 250+ families, 7k reach) -> Goal: Inform -> Viz: Large Text "Big Numbers" -> Interaction: None -> Justification: Conveys the most important stats instantly for maximum impact.
+        - Report Info: Community composition -> Goal: Compare -> Viz: Donut Chart (Chart.js/Canvas) -> Interaction: Hover tooltips -> Justification: Shows the proportion of each group within the club's family in a visually appealing way.
+        - Report Info: Club categories -> Goal: Organize -> Viz: HTML/CSS Flow Diagram -> Interaction: None -> Justification: A custom visual flow is more dynamic and easier to grasp than a simple list, showing the player's journey.
+        - Report Info: Sponsorship benefits -> Goal: Inform -> Viz: Icon-based cards (Unicode) -> Interaction: None -> Justification: Breaks down the value proposition into clear, scannable points.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 350px;
+            width: 100%;
+            max-width: 350px;
+        }
+        .flow-arrow {
+            content: '';
+            position: absolute;
+            right: -2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0; 
+            height: 0; 
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #93c5fd;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center my-12 md:my-16">
+            <img src="Logo.png" alt="Escudo CED Cotobade" style="width: 150px; display: block; margin: auto;">
+            <h1 class="text-5xl md:text-7xl font-black text-blue-900">CED COTOBADE</h1>
+            <p class="text-xl md:text-2xl text-blue-800 mt-2 font-semibold">Un Compromiso co Deporte Base e a Comunidade</p>
+            <div class="mt-4 text-3xl text-yellow-600 font-bold">Rumbo ao 20º Aniversario!</div>
+        </header>
+
+        <section id="impacto" class="my-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="text-6xl font-black text-blue-800">120+</div>
+                    <div class="mt-2 text-xl font-semibold">Xogadores/as</div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="text-6xl font-black text-blue-800">200+</div>
+                    <div class="mt-2 text-xl font-semibold">Familias</div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="text-6xl font-black text-yellow-500">4.000</div>
+                    <div class="mt-2 text-xl font-semibold">Alcance Semanal en Facebook e Instagram</div>
+                </div>
+            </div>
+            <p class="text-center mt-8 text-gray-600">O noso club é un punto de encontro para a comunidade, cunha visibilidade que medra cada día tanto no campo como no mundo dixital.</p>
+        </section>
+
+        <hr class="border-t-2 border-blue-200 my-16">
+
+        <section id="estrutura" class="my-16">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-4">A Nosa Estrutura Deportiva</h2>
+            <p class="text-center max-w-2xl mx-auto text-gray-600 mb-12">Ofrecemos un camiño formativo completo, asegurando que cada xogador e xogadora atope o seu lugar para medrar e competir.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12 text-center">
+                
+                <div class="relative">
+                    <div class="bg-blue-800 text-white p-4 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold">Fútbol Sala Base</h3>
+                        <p class="mt-2">Biberón, Prebenxamín, Benxamín, Alevín, Infantil masculino feminino e Cadete</p>
+                    </div>
+                    <div class="hidden md:block flow-arrow"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-blue-600 text-white p-4 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold">Fútbol 8 Base</h3>
+                        <p class="mt-2">Alevín</p>
+                    </div>
+                     <div class="hidden md:block flow-arrow"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-blue-600 text-white p-4 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold">Fútbol 11 Base</h3>
+                        <p class="mt-2">Infantil</p>
+                    </div>
+                     <div class="hidden md:block flow-arrow"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-blue-600 text-white p-4 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold">Patinaxe</h3>
+                        <p class="mt-2">Todas as idades</p>
+                    </div>
+                     <div class="hidden md:block flow-arrow"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-blue-600 text-white p-4 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold">Ximnasia rítmica</h3>
+                        <p class="mt-2">Todas as idades</p>
+                    </div>
+                     <div class="hidden md:block flow-arrow"></div>
+                </div>
+
+                <div>
+                    <div class="bg-yellow-500 text-blue-900 p-4 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold">Fútbol 11</h3>
+                        <p class="mt-2">Sénior (3ª Futgal)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="border-t-2 border-blue-200 my-16">
+
+        <section id="porque" class="my-16">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">Por que Patrocinar o CED Cotobade?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-12 rounded-lg shadow-lg flex items-center">
+                    <span class="text-4xl mr-4">🤝</span>
+                    <div>
+                        <h3 class="font-bold text-xl">Asociación con Valores</h3>
+                        <p class="text-gray-600">Aliñe a súa marca co deporte, a saúde e o desenvolvemento xuvenil.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-12 rounded-lg shadow-lg flex items-center">
+                    <span class="text-4xl mr-4">📈</span>
+                    <div>
+                        <h3 class="font-bold text-xl">Visibilidade e Recoñecemento</h3>
+                        <p class="text-gray-600">Gañe exposición ante unha audiencia local e rexional fiel.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-12 rounded-lg shadow-lg flex items-center">
+                    <span class="text-4xl mr-4">🌍</span>
+                    <div>
+                        <h3 class="font-bold text-xl">Responsabilidade Social</h3>
+                        <p class="text-gray-600">Demostre o seu compromiso coa comunidade e o benestar social.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-12 rounded-lg shadow-lg flex items-center">
+                    <span class="text-4xl mr-4">🎯</span>
+                    <div>
+                        <h3 class="font-bold text-xl">Impacto Directo</h3>
+                        <p class="text-gray-600">Contribúa a un proxecto que ofrece un lecer saudable e formativo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <hr class="border-t-2 border-blue-200 my-16">
+
+
+        <section id="opciones-detalladas" class="my-16">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">Posibilidades de Patrocinio Detalladas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">1. Instalacións </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li> Lonas publicitarias fixas: Exposición da súa marca en valos e lonas permanentes nas instalacións deportivas.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">2. Equipamento e Material</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Patrocinio da equipación completa</li>
+                        <li>Material deportivo</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">3. Comunicación e Eventos</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Redes sociais: Logotipo e mencións destacadas en todas as nosas plataformas de redes sociais.</li>
+                        <li>Eventos e torneos: Posibilidade de nomear un torneo ou un evento anual co nome do patrocinador (p. ex., "Torneo de Nadal [Nome do Patrocinador]").</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">4. Outras Opcións de Patrocinio</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Patrocinio por xogador: Financiamento da cota anual ou parte dela para un ou varios xogadores.</li>
+                        <li>Patrocinio por categoría: Apoio a un equipo en particular (alevíns, infantiles, etc.)</li>
+                        <li>Descontos e beneficios especiais aos membros da escola (xogadores, familias, adestradores).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <header class="text-center my-12 md:my-16">
+    <h1 class="text-5xl md:text-7xl font-black text-blue-900">CED COTOBADE</h1>
+    <p class="text-xl md:text-2xl text-blue-800 mt-2 font-semibold">Un Compromiso co Deporte Base e a Comunidade</p>
+    <div class="mt-4 text-lg text-yellow-600 font-bold">Rumbo ao 20º Aniversario!</div>
+</header>
+
+<div class="container mx-auto px-4">
+    <figure class="w-full">
+        <img src="DSC03628.png" alt="Equipo del CED Cotobade" class="w-full h-auto object-cover rounded-lg shadow-lg" />
+        <figcaption class="mt-2 text-center text-gray-600 text-sm">Presentación 2024</figcaption>
+    </figure>
+</div>
+
+        </div>
+</div>
+
+        <footer class="text-center mt-16 mb-8">
+            <h2 class="text-3xl font-bold text-blue-900">Contacta Connosco</h2>
+            <p class="mt-4 text-lg">Para máis información sobre as opcións de patrocinio, non dubide en contactar.</p>
+            <p class="mt-2 font-semibold text-2xl text-blue-800">cedcotobade1@gmail.com | 667098517 / 661562873</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const communityCtx = document.getElementById('communityChart').getContext('2d');
+            new Chart(communityCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Xogadores/as', 'Familias', 'Voluntariado'],
+                    datasets: [{
+                        label: 'Comunidade do Club',
+                        data: [150, 250, 30],
+                        backgroundColor: [
+                            '#1e3a8a', // blue-900
+                            '#2563eb', // blue-600
+                            '#f59e0b'  // amber-500
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#334155', // slate-700
+                                padding: 20,
+                                font: {
+                                    size: 14,
+                                    family: "'Roboto', sans-serif",
+                                    weight: '500'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
